@@ -2,6 +2,14 @@ const gridWrapper = document.getElementsByClassName("wrapper")[0];
 const gridSize = 16;
 const divDimensions = gridWrapper.clientWidth / gridSize;
 const buttonErase = document.getElementsByClassName("erase")[0];
+const displaySize = document.getElementsByClassName('showSize')[0];
+
+
+//function to display the actual grid size
+
+function divSize(size){
+  displaySize.innerHTML = size;
+};
 
 //Paiting the grid as the mouse goes over and is clicked down
 gridWrapper.addEventListener("mousemove", function (event) {
@@ -38,3 +46,4 @@ function clean(){
 buttonErase.addEventListener("click", clean);
 
 gridCreate(gridSize, divDimensions);
+divSize(gridSize);
