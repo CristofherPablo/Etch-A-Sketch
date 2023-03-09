@@ -4,32 +4,7 @@ const divDimensions = gridWrapper.clientWidth / gridSize;
 const buttonErase = document.getElementsByClassName("erase")[0];
 const displaySize = document.querySelector('.showSize');
 const userSizeChoice = document.getElementById('size');
-
-//function to display the actual grid size
-
-function divSize(size){
-  displaySize.innerHTML = size;
-};
-
-//function to get the user's size of choice
-
-function sizeUser(event){
-  const newSize = event.target.value;
-  divSize(newSize);
-};
-userSizeChoice.addEventListener('input', sizeUser);
-
-//Paiting the grid as the mouse goes over and is clicked down
-gridWrapper.addEventListener("mousemove", function (event) {
-  if (event.buttons == 1) {
-    const target = event.target;
-    if (target.classList.contains("div-clone")) {
-      target.style.backgroundColor = "black";
-    }
-  } else {
-    return;
-  }
-});
+let newSize = 16;
 
 // Creating the div grd with flexbox
 function gridCreate(gridSize, divDimensions) {
@@ -46,6 +21,39 @@ function gridCreate(gridSize, divDimensions) {
   }
 }
 
+//function to display the actual grid size
+
+function divSize(size){
+  displaySize.innerHTML = size;
+};
+
+//function to get the user's size of choice
+
+function sizeUser(event){
+  newSize = event.target.value;
+  divSize(newSize);
+  gridResize(newSize)
+};
+
+//function to resize the grid as the user size choice
+function gridResize(size){
+  gridWrapper.innerHTML = "";
+  const newDimensions = gridWrapper.clientWidth / size;
+  gridCreate(size, newDimensions);
+};
+
+//Paiting the grid as the mouse goes over and is clicked down
+gridWrapper.addEventListener("mousemove", function (event) {
+  if (event.buttons == 1) {
+    const target = event.target;
+    if (target.classList.contains("div-clone")) {
+      target.style.backgroundColor = "black";
+    }
+  } else {
+    return;
+  }
+});
+
 // Function to clean the board and reset the standard values
 function clean(){
   gridWrapper.innerHTML = "";
@@ -53,6 +61,8 @@ function clean(){
 };
 
 
+// calling the main functions to construct the site
+userSizeChoice.addEventListener('input', sizeUser);
 buttonErase.addEventListener("click", clean);
 gridCreate(gridSize, divDimensions);
 divSize(gridSize);
