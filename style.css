@@ -8,13 +8,3 @@
 }
 
 /*
-const pixDiv = document.createElement("div");
-pixDiv.style.width = `${divDimensions}px`;
-pixDiv.style.height = `${divDimensions}px`;
-pixDiv.style.backgroundColor = "lightgrey";
-//pixDiv.style.borderTop = "0.8px solid black";
-//pixDiv.style.borderLeft = "0.8px solid black";
-pixDiv.style.margin = "0px";
-pixDiv.classList.add("div-clone");
-
-const clonePixDiv = pixDiv.cloneNode(true);
