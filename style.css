@@ -16,3 +16,4 @@ gridSize.addEventListener("mousemove", (e) => {
     gridCreate(newSize, newGridDimensions);
   }
 });
+

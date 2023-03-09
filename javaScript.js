@@ -2,14 +2,22 @@ const gridWrapper = document.getElementsByClassName("wrapper")[0];
 const gridSize = 16;
 const divDimensions = gridWrapper.clientWidth / gridSize;
 const buttonErase = document.getElementsByClassName("erase")[0];
-const displaySize = document.getElementsByClassName('showSize')[0];
-
+const displaySize = document.querySelector('.showSize');
+const userSizeChoice = document.getElementById('size');
 
 //function to display the actual grid size
 
 function divSize(size){
   displaySize.innerHTML = size;
 };
+
+//function to get the user's size of choice
+
+function sizeUser(event){
+  const newSize = event.target.value;
+  divSize(newSize);
+};
+userSizeChoice.addEventListener('input', sizeUser);
 
 //Paiting the grid as the mouse goes over and is clicked down
 gridWrapper.addEventListener("mousemove", function (event) {
@@ -38,12 +46,13 @@ function gridCreate(gridSize, divDimensions) {
   }
 }
 
+// Function to clean the board and reset the standard values
 function clean(){
   gridWrapper.innerHTML = "";
   gridCreate(gridSize, divDimensions);
 };
 
-buttonErase.addEventListener("click", clean);
 
+buttonErase.addEventListener("click", clean);
 gridCreate(gridSize, divDimensions);
 divSize(gridSize);
