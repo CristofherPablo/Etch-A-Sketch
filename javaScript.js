@@ -30,9 +30,11 @@ function gridCreate(gridSize, divDimensions) {
   }
 }
 
-buttonErase.addEventListener("click", () => {
+function clean(){
   gridWrapper.innerHTML = "";
   gridCreate(gridSize, divDimensions);
-});
+};
+
+buttonErase.addEventListener("click", clean);
 
 gridCreate(gridSize, divDimensions);
