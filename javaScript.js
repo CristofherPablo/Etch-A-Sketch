@@ -1,10 +1,7 @@
 const gridWrapper = document.getElementsByClassName("wrapper")[0];
 const gridSize = 16;
 const divDimensions = gridWrapper.clientWidth / gridSize;
-const buttonErase = document.getElementsByClassName('erase')[0];
-
-
-
+const buttonErase = document.getElementsByClassName("erase")[0];
 
 //Paiting the grid as the mouse goes over and is clicked down
 gridWrapper.addEventListener("mousemove", function (event) {
@@ -20,7 +17,6 @@ gridWrapper.addEventListener("mousemove", function (event) {
 
 // Creating the div grd with flexbox
 function gridCreate(gridSize, divDimensions) {
-
   for (let i = 0; i < gridSize ** 2; i++) {
     const pixDiv = document.createElement("div");
     pixDiv.style.width = `${divDimensions}px`;
@@ -31,12 +27,12 @@ function gridCreate(gridSize, divDimensions) {
     pixDiv.style.margin = "0px";
     pixDiv.classList.add("div-clone");
     gridWrapper.appendChild(pixDiv);
-  };
-};
+  }
+}
 
-buttonErase.addEventListener('click', () =>{
-    gridWrapper.innerHTML = '';
-    gridCreate(gridSize, divDimensions);
+buttonErase.addEventListener("click", () => {
+  gridWrapper.innerHTML = "";
+  gridCreate(gridSize, divDimensions);
 });
 
 gridCreate(gridSize, divDimensions);

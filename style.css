@@ -8,3 +8,11 @@
 }
 
 /*
+gridSize.addEventListener("mousemove", (e) => {
+  if (e.buttons == 1) {
+    const newSize = gridSize.value;
+    console.log(newSize);
+    const newGridDimensions = gridWrapper.clientWidth / newSize;
+    gridCreate(newSize, newGridDimensions);
+  }
+});
