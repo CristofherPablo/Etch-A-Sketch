@@ -5,14 +5,15 @@ const buttonErase = document.getElementsByClassName("erase")[0];
 const displaySize = document.querySelector(".showSize");
 const userSizeChoice = document.getElementById("size");
 let newSize = 16;
-
+var color = 'white';
+//"#D3D3D3"
 // Creating the div grd with flexbox
 function gridCreate(gridSize, divDimensions) {
   for (let i = 0; i < gridSize ** 2; i++) {
     const pixDiv = document.createElement("div");
     pixDiv.style.width = `${divDimensions}px`;
     pixDiv.style.height = `${divDimensions}px`;
-    pixDiv.style.backgroundColor = "lightgrey";
+    pixDiv.style.backgroundColor = color;
     pixDiv.style.margin = "0px";
     pixDiv.classList.add("div-clone");
     gridWrapper.appendChild(pixDiv);
@@ -22,8 +23,8 @@ function gridCreate(gridSize, divDimensions) {
 //Function to get a random color
 function pickColor() {
   const randomRGB = Math.floor(Math.random() * 16777215).toString(16);
-  console.log(`#${randomRGB}`);
-  return `#${randomRGB}`;
+  color = `#${randomRGB}`;
+  return color;
 }
 //Math.floor(Math.random()*16777215).toString(16)
 
@@ -49,7 +50,7 @@ function gridResize(size) {
 }
 
 //toggling among the colors to paint
-var colorPicked = 1;
+var colorPicked = 3;
 function changeColor(color) {
   if (color == "black") {
     colorPicked = 1;
@@ -60,16 +61,38 @@ function changeColor(color) {
     colorPicked = 1;
   }
 }
-//Paiting the grid as the mouse goes over and is clicked down
+
+// make the color grey opacity increase till total black
+function shadesGrey(divColor) {
+  console.log(divColor);
+  if (divColor.startsWith("rgba")) {
+    let opacity = Number(divColor.slice(-4, -1));
+    if (opacity < 0.9) {
+      return `rgba(0, 0, 0, ${opacity + 0.1})`;
+    } else {
+      return "rgba(0, 0, 0, 0.9)";
+    }
+  } else {
+    color = "rgba(0, 0, 0, 0.1)";
+    return color;
+  }
+}
+
+//Painting the grid as the mouse goes over and is clicked down
 gridWrapper.addEventListener("mousemove", function (event) {
   if (event.buttons == 1) {
     const target = event.target;
     if (target.classList.contains("div-clone")) {
       //target.style.backgroundColor = "black";
       if (colorPicked == 1) {
-        target.style.backgroundColor = "#000000";
+        color = "#000000";
+        target.style.backgroundColor = color;
       } else if (colorPicked == 2) {
         target.style.backgroundColor = pickColor();
+      } else if (colorPicked == 3) {
+        //target.style.backgroundColor =
+        //shadesGrey(color,target.style.backgroundColor);
+        target.style.backgroundColor = shadesGrey(target.style.backgroundColor);
       }
     }
   } else {
@@ -81,6 +104,7 @@ gridWrapper.addEventListener("mousemove", function (event) {
 function clean() {
   gridWrapper.innerHTML = "";
   const newDimensions = gridWrapper.clientWidth / newSize;
+  color = "#D3D3D3";
   gridCreate(newSize, newDimensions);
 }
 

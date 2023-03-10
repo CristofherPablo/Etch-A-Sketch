@@ -9,4 +9,22 @@
 
 /*
 
+function shadesGrey(currentColor, divColor) {
+  console.log(divColor);
+  if (currentColor.startsWith("rgba")) {
+    if (divColor.startsWith("rgba")) {
+      let opacity = Number(divColor.slice(-4, -1));
+      if (opacity < 0.9) {
+        return `rgba(0, 0, 0, ${opacity + 0.1})`;
+      } else {
+        return "rgba(0, 0, 0, 0.9)";
+      }
+    }
+  } else {
+    color = "rgba(0, 0, 0, 0.1)";
+    return color;
+  }
+}
+
+
 
