@@ -20,7 +20,11 @@ function gridCreate(gridSize, divDimensions) {
 }
 
 //Function to get a random color
-
+function pickColor() {
+  const randomRGB = Math.floor(Math.random() * 16777215).toString(16);
+  console.log(`#${randomRGB}`);
+  return `#${randomRGB}`;
+}
 //Math.floor(Math.random()*16777215).toString(16)
 
 //function to display the actual grid size
@@ -44,19 +48,36 @@ function gridResize(size) {
   gridCreate(size, newDimensions);
 }
 
+//toggling among the colors to paint
+var colorPicked = 1;
+function changeColor(color) {
+  if (color == "black") {
+    colorPicked = 1;
+  } else if (color == "rainbow") {
+    colorPicked = 2;
+    //set the standard color to black
+  } else {
+    colorPicked = 1;
+  }
+}
 //Paiting the grid as the mouse goes over and is clicked down
 gridWrapper.addEventListener("mousemove", function (event) {
   if (event.buttons == 1) {
     const target = event.target;
     if (target.classList.contains("div-clone")) {
-      target.style.backgroundColor = "black";
+      //target.style.backgroundColor = "black";
+      if (colorPicked == 1) {
+        target.style.backgroundColor = "#000000";
+      } else if (colorPicked == 2) {
+        target.style.backgroundColor = pickColor();
+      }
     }
   } else {
     return;
   }
 });
 
-// Function to clean the board and reset the standard values
+// Function to clean the board and reset the background color
 function clean() {
   gridWrapper.innerHTML = "";
   const newDimensions = gridWrapper.clientWidth / newSize;
