@@ -2,8 +2,8 @@ const gridWrapper = document.getElementsByClassName("wrapper")[0];
 const gridSize = 16;
 const divDimensions = gridWrapper.clientWidth / gridSize;
 const buttonErase = document.getElementsByClassName("erase")[0];
-const displaySize = document.querySelector('.showSize');
-const userSizeChoice = document.getElementById('size');
+const displaySize = document.querySelector(".showSize");
+const userSizeChoice = document.getElementById("size");
 let newSize = 16;
 
 // Creating the div grd with flexbox
@@ -13,34 +13,36 @@ function gridCreate(gridSize, divDimensions) {
     pixDiv.style.width = `${divDimensions}px`;
     pixDiv.style.height = `${divDimensions}px`;
     pixDiv.style.backgroundColor = "lightgrey";
-    //pixDiv.style.borderTop = "0.8px solid black";
-    //pixDiv.style.borderLeft = "0.8px solid black";
     pixDiv.style.margin = "0px";
     pixDiv.classList.add("div-clone");
     gridWrapper.appendChild(pixDiv);
   }
 }
 
+//Function to get a random color
+
+//Math.floor(Math.random()*16777215).toString(16)
+
 //function to display the actual grid size
 
-function divSize(size){
+function divSize(size) {
   displaySize.innerHTML = size;
-};
+}
 
 //function to get the user's size of choice
 
-function sizeUser(event){
+function sizeUser(event) {
   newSize = event.target.value;
   divSize(newSize);
-  gridResize(newSize)
-};
+  gridResize(newSize);
+}
 
 //function to resize the grid as the user size choice
-function gridResize(size){
+function gridResize(size) {
   gridWrapper.innerHTML = "";
   const newDimensions = gridWrapper.clientWidth / size;
   gridCreate(size, newDimensions);
-};
+}
 
 //Paiting the grid as the mouse goes over and is clicked down
 gridWrapper.addEventListener("mousemove", function (event) {
@@ -55,14 +57,14 @@ gridWrapper.addEventListener("mousemove", function (event) {
 });
 
 // Function to clean the board and reset the standard values
-function clean(){
+function clean() {
   gridWrapper.innerHTML = "";
-  gridCreate(gridSize, divDimensions);
-};
-
+  const newDimensions = gridWrapper.clientWidth / newSize;
+  gridCreate(newSize, newDimensions);
+}
 
 // calling the main functions to construct the site
-userSizeChoice.addEventListener('input', sizeUser);
+userSizeChoice.addEventListener("input", sizeUser);
 buttonErase.addEventListener("click", clean);
 gridCreate(gridSize, divDimensions);
 divSize(gridSize);
