@@ -1,30 +1,76 @@
+@font-face {
+  font-family: gamer;
+  src: url("assets/SpaceMission-rgyw9.otf") format('opentype');
+}
+
+body{
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  background-color: black;
+  color: #32e232;
+  font-family: gamer;
+}
+
+.container{
+  display: flex;
+}
+
+.sideBar{
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  justify-content: center;
+  width: 170px;
+  gap: 10px;
+  margin-right: 60px;
+  padding: 10px;
+  background-color: #202020;
+  border: 1px solid #32e232;
+  font-family: 'Lucida Sans', Verdana, sans-serif;
+}
+
+button{
+  background-color: #7fcb98;
+  font-weight: bolder;
+  font-size: 18px;
+  padding: 6px;
+  border: 1px solid #32e232;
+  color: #202020;
+  cursor: pointer;
+}
+
+.rainbow{
+  background: linear-gradient(to right, red, orange, yellow, green, blue, indigo, violet);
+  color: #32e232;
+}
+
+.blackButton{
+  background-color: #202020;
+  color: #f0ffff;
+}
+
+input{
+  width: 100%;
+}
+
+button:hover{
+  background-color: #5bc980;
+}
+
 .wrapper{
-    border: .3px solid rgb(80, 77, 77);
     width: 500px;
     height: 500px;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    border: 1px solid #32e232;
 }
 
-/*
-
-function shadesGrey(currentColor, divColor) {
-  console.log(divColor);
-  if (currentColor.startsWith("rgba")) {
-    if (divColor.startsWith("rgba")) {
-      let opacity = Number(divColor.slice(-4, -1));
-      if (opacity < 0.9) {
-        return `rgba(0, 0, 0, ${opacity + 0.1})`;
-      } else {
-        return "rgba(0, 0, 0, 0.9)";
-      }
-    }
-  } else {
-    color = "rgba(0, 0, 0, 0.1)";
-    return color;
-  }
-}
 
 
 

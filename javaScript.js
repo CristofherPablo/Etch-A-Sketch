@@ -5,7 +5,7 @@ const buttonErase = document.getElementsByClassName("erase")[0];
 const displaySize = document.querySelector(".showSize");
 const userSizeChoice = document.getElementById("size");
 let newSize = 16;
-var color = 'white';
+var color = "black";
 //"#D3D3D3"
 // Creating the div grd with flexbox
 function gridCreate(gridSize, divDimensions) {
@@ -13,7 +13,7 @@ function gridCreate(gridSize, divDimensions) {
     const pixDiv = document.createElement("div");
     pixDiv.style.width = `${divDimensions}px`;
     pixDiv.style.height = `${divDimensions}px`;
-    pixDiv.style.backgroundColor = color;
+    pixDiv.style.backgroundColor = '#7fcb98';
     pixDiv.style.margin = "0px";
     pixDiv.classList.add("div-clone");
     gridWrapper.appendChild(pixDiv);
@@ -31,7 +31,7 @@ function pickColor() {
 //function to display the actual grid size
 
 function divSize(size) {
-  displaySize.innerHTML = size;
+  displaySize.innerHTML = `${size} X ${size}`;
 }
 
 //function to get the user's size of choice
@@ -50,7 +50,7 @@ function gridResize(size) {
 }
 
 //toggling among the colors to paint
-var colorPicked = 3;
+var colorPicked = 1;
 function changeColor(color) {
   if (color == "black") {
     colorPicked = 1;
@@ -90,8 +90,6 @@ gridWrapper.addEventListener("mousemove", function (event) {
       } else if (colorPicked == 2) {
         target.style.backgroundColor = pickColor();
       } else if (colorPicked == 3) {
-        //target.style.backgroundColor =
-        //shadesGrey(color,target.style.backgroundColor);
         target.style.backgroundColor = shadesGrey(target.style.backgroundColor);
       }
     }
@@ -107,6 +105,25 @@ function clean() {
   color = "#D3D3D3";
   gridCreate(newSize, newDimensions);
 }
+
+//Changing the color of the buttons to show when they are activated
+const button1 = document.getElementById('button1');
+const button2 = document.getElementById('button2');
+
+button1.addEventListener('click', () => {
+  button1.classList.add('blackButton');
+  changeColor('black');
+  button2.classList.remove('rainbow');
+})
+
+button2.addEventListener('click', () => {
+  button2.classList.add('rainbow');
+  changeColor('rainbow');
+  button1.classList.remove('blackButton');
+})
+
+
+
 
 // calling the main functions to construct the site
 userSizeChoice.addEventListener("input", sizeUser);

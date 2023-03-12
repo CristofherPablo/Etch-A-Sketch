@@ -5,16 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="style.css" />
     <script src="javaScript.js" defer></script>
+    <link rel="shortcut icon" href="assets/favicon.png" type="image/x-icon" />
     <title>Etch-A-Sketch</title>
   </head>
   <body>
-    <div class="wrapper"></div>
-    <button class="erase">Erase</button>
-    <div class="showSize"></div>
-    <input id="size" type="range" min="1" max="100" value="16">
-    <div class="buttonColor">
-      <button onclick="changeColor('black')">Black</button>
-      <button onclick="changeColor('rainbow')">Rainbow</button>
+    <h1>Etch-A-Sketch</h1>
+    <div class="container">
+      <div class="sideBar">
+        <button class="erase">Erase</button>
+        <div>
+          <div class="showSize"></div>
+          <input id="size" type="range" min="1" max="100" value="16" />
+        </div>
+        <button id="button1">Black</button>
+        <button id="button2">Rainbow</button>
+      </div>
+      <div class="wrapper"></div>
     </div>
   </body>
 </html>
